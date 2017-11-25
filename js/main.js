@@ -1,30 +1,11 @@
-
 var wait = false;
 var wHeight, wWidth, mMedia, oldMMedia;        // matchMedia small or big
-
-
-
-
-/*function toggleFullScreen() {
-  var doc = window.document;
-  var docEl = doc.documentElement;
-
-  var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-  if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-    requestFullScreen.call(docEl);
-  }
-  else {
-    cancelFullScreen.call(doc);
-  }
-}*/
 
 function defMatchMedia() {
     if (window.matchMedia("(min-width:769px)").matches)
         return 'big';
     else
-        return 'small';    
+        return 'small';
 }
 function defHeightArticlesContainer() {
 
@@ -37,21 +18,12 @@ function defHeightArticlesContainer() {
             $(this).height(wHeight-heightNav-25);
         });
     }
-    /*else {
-        $('#content-container, #content-container>.wrapper').height('auto');
-        $('.articles-container').each(function() {
-            $(this).height('auto');
-        });
-    }*/
 }
 
 function defHeightMainContainer() {
     if (mMedia == 'big') {
         $('#main-container').height(wHeight);
-    } 
-    /*else {
-        $('#main-container').height('auto');
-    }*/
+    }
 }
 
 function defHorizontalNavigation(hash) {
@@ -63,29 +35,29 @@ function defHorizontalNavigation(hash) {
            console.info('premier hash:',hash);
        }
     }
-    
+
     $('#navigation-container li').removeClass('active');                        // activation du bon menu
     $('#navigation-container li a[href="'+hash+'"]').parent('li').addClass('active');
-    
+
     var width = $('#content-container').width();                                // récupération de la largeur du container
     var index = $('.articles-container').index($(hash));                        // récupération de la position dans le dom (commence par 0)
     console.info('width:',width,'index:',index);
-    
+
     scrollToRight();
-    $('#content-container').animate({scrollLeft: width*index}, 800);     
+    $('#content-container').animate({scrollLeft: width*index}, 800);
 }
 
 function defVerticalNavigation(hash) {
     $('#navigation-container li').removeClass('active');
-    
+
     if (typeof hash === "undefined"
     || hash === null) {
-        $('html, body').animate({scrollTop: 0}, 800);                         // repositionnement en mode vertical    
+        $('html, body').animate({scrollTop: 0}, 800);                         // repositionnement en mode vertical
     } else {
         var offset = $(hash).offset();
         console.info('offset:',offset);
-        $('html, body').animate({scrollTop: offset.top}, 800);    
-    }    
+        $('html, body').animate({scrollTop: offset.top}, 800);
+    }
 }
 
 function bounceAsideLeft() {
@@ -113,16 +85,13 @@ function scrollToRight() {
     }
 }
 
-// ************************ on document ready ************************
 $(function() {
-    // ************************ define global variable ************************
     wHeight = $(window).height();
     wWidth = $(window).width();
-    console.info('window w/h: ', wWidth, '/', wHeight);
+    console.log('window w/h: ', wWidth, '/', wHeight);
     oldMMedia = mMedia = defMatchMedia();
-    console.info('matchMedia: ', mMedia);
-    
-    // ************************ start ************************
+    console.log('matchMedia: ', mMedia);
+
     if (mMedia == 'big') {
         defHeightMainContainer();
         defHeightArticlesContainer();
@@ -132,7 +101,9 @@ $(function() {
         defVerticalNavigation(null);
     }
 
-    // ************************ fermeture de aside right ************************
+    /**
+     * fermeture de aside right
+     */
     $('aside#right .k-close').click(function(e){
         e.preventDefault();
         if (mMedia == 'big') {
@@ -141,22 +112,26 @@ $(function() {
             $('aside#right').animate({height: 0, width: 0}, 150, function() {
                 $('aside#right .k-close, aside#right .link').fadeOut(150);
                 $('aside#right .plus').fadeIn(300);
-            });       
+            });
         }
     });
-    
-    // ************************ fermeture de aside left XS ************************
+
+    /**
+     * fermeture de aside left XS
+     */
     $('aside#left .k-close').click(function(e) {
         e.preventDefault();
         if (mMedia == 'small') {
             $('aside#left').animate({'height': 60, 'width': 60}, 150, function() {
                 $('aside#left .k-close').fadeOut(150);
                 $('aside#left .plus').fadeIn(300);
-            });            
+            });
         }
     });
-    
-    // ************************ open de aside left XS ************************
+
+    /**
+     * open de aside left XS
+     */
     $('aside#left .plus').click(function(e) {
         e.preventDefault();
         if (mMedia == 'small') {
@@ -166,8 +141,10 @@ $(function() {
             });
         }
     });
-    
-    // ************************ open de aside left XS ************************
+
+    /**
+     * open de aside left XS
+     */
     $('aside#right .plus').click(function(e) {
         e.preventDefault();
         if (mMedia == 'small') {
@@ -177,26 +154,30 @@ $(function() {
             });
         }
     });
-    
-    // ************************ ouverture de aside right ************************
-    $('.articles-container a:not(.unstyled)').click(function(e) {
+
+    /**
+     * ouverture de aside right
+     */
+    $('#content-container a:not(.unstyled)').click(function(e) {
         e.preventDefault();
-        var hash = $(this).attr('href').replace('site-', 'img-');               console.info('hash:', hash);
-        
+        var hash = $(this).attr('href').replace('site-', 'img-');               console.log('hash:', hash);
+
         if (mMedia == 'big') {
             $('aside#right>div, aside#right a').fadeOut(150).promise().done(function() {
                 scrollToLeft();
-                $(hash+', aside#right a:not(.plus)').fadeIn(500);    
+                $(hash+', aside#right a:not(.plus)').fadeIn(500);
             });
         } else {
             $('aside#right>div, aside#right a:not(.plus)').fadeOut(150).promise().done(function() {
-                $(hash).show(); 
+                $(hash).show();
                 bounceAsideRight();
             });
         }
     });
-        
-    // ************************ navigate ************************
+
+    /**
+     * navigate
+     */
     $('#navigation-container a').click(function(e) {
         e.preventDefault();
         if (mMedia == 'big') {
@@ -207,16 +188,17 @@ $(function() {
     });
 });
 
-// ************************ resize ************************
+/**
+ * resize
+ */
 $(window).resize(function() {
     clearTimeout(wait);
     wait = setTimeout(function() {
-        // ************************ define global variable ************************
         wHeight = $(window).height();
         wWidth = $(window).width();
-        console.info('window w/h: ', wWidth, '/', wHeight);
+        console.log('window w/h: ', wWidth, '/', wHeight);
         mMedia = defMatchMedia();
-        console.info('matchMedia: ', mMedia);
+        console.log('matchMedia: ', mMedia);
         if (mMedia == 'big') {
             $('*').removeAttr('style');         // reset all jquery effects
             defHeightMainContainer();
