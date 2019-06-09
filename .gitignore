@@ -1,25 +1,26 @@
-######################### Common configuration #########################
-### Packages managers
-/node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-### IDE
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# ide
 /.idea/
-*.sublime-project
-*.sublime-workspace
 
-### OS
-*~
-*.sw[mnpcod]
-*.log
-*.tmp
-*.tmp.*
-log.txt
-$RECYCLE.BIN/
+# misc
 .DS_Store
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.Trash-*
-Desktop.ini
-Thumbs.db
-UserInterfaceState.xcuserstate
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
