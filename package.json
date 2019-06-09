@@ -2,7 +2,7 @@
   "name": "cv",
   "version": "2.0.0",
   "private": true,
-  "homepage": "http://kevin-lot.github.io/cv",
+  "homepage": "http://kevinlot.me",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -17,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -b master -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
