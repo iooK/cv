@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          linkedin link
+          linkedin
         </a>
       </section>
     </div>
