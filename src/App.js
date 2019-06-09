@@ -3,23 +3,23 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <section className="App-section">
-        <p>
-          Kevin Lot
-        </p>
-        <a
-          className="App-link"
-          href="https://fr.linkedin.com/in/kevinlot"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          linkedin
-        </a>
-      </section>
-    </div>
-  );
+    return (
+        <div className="App">
+            <section className="App-section">
+                <p>
+                    Kevin Lot
+                </p>
+                <a
+                    className="App-link"
+                    href="https://fr.linkedin.com/in/kevinlot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    linkedin
+                </a>
+            </section>
+        </div>
+    );
 }
 
 export default App;
