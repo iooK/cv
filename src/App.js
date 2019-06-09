@@ -17,6 +17,22 @@ function App() {
                 >
                     linkedin
                 </a>
+                <a
+                    className="App-link"
+                    href="https://twitter.com/kevinl0t"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    @kevinl0t
+                </a>
+                <a
+                    className="App-link"
+                    href="https://keyclic.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Keyclic
+                </a>
             </section>
         </div>
     );
