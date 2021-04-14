@@ -11,19 +11,19 @@ function App() {
                 </p>
                 <a
                     className="App-link"
+                    href="https://github.com/kevin-lot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    github
+                </a>
+                <a
+                    className="App-link"
                     href="https://fr.linkedin.com/in/kevinlot"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     linkedin
-                </a>
-                <a
-                    className="App-link"
-                    href="https://twitter.com/kevinl0t"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    @kevinl0t
                 </a>
                 <a
                     className="App-link"
